@@ -8,6 +8,7 @@ import cookieParser from 'cookie-parser';
 
 dotenv.config();
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO)
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGO)
 
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
+app.use('/api/listing', listingRouter);
 
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
